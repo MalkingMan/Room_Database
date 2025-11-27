@@ -34,3 +34,66 @@ fun DetailSiswa.toSiswa(): Siswa = Siswa(
     alamat = alamat,
     telpon = telpon
 )
+
+
+// -------------------------
+// EXTENSION: Entity Siswa -> UIState
+// -------------------------
+fun Siswa.toUIStateSiswa(isEntryValid: Boolean = false): UIStateSiswa =
+    UIStateSiswa(
+        detailSiswa = this.toDetailSiswa(),
+        isEntryValid = isEntryValid
+    )
+
+// -------------------------
+// EXTENSION: Entity Siswa -> DetailSiswa
+// -------------------------
+fun Siswa.toDetailSiswa(): DetailSiswa = DetailSiswa(
+    id = id,
+    nama = nama,
+    alamat = alamat,
+    telpon = telpon
+)
+
+// -------------------------
+// VIEWMODEL
+// -------------------------
+class EntryViewModel(private val repositorySiswa: RepositorySiswa) : ViewModel() {
+
+    /**
+     * Berisi status Siswa saat ini
+     */
+    var uiStateSiswa by mutableStateOf(UIStateSiswa())
+        private set
+
+    // -------------------------
+    // VALIDASI INPUT
+    // -------------------------
+    private fun validasiInput(uiState: DetailSiswa = uiStateSiswa.detailSiswa): Boolean {
+        return with(uiState) {
+            nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
+        }
+    }
+
+    // -------------------------
+    // UPDATE STATE UI
+    // -------------------------
+    fun updateUiState(detailSiswa: DetailSiswa) {
+        uiStateSiswa =
+            UIStateSiswa(
+                detailSiswa = detailSiswa,
+                isEntryValid = validasiInput(detailSiswa)
+            )
+    }
+
+    // -------------------------
+    // SIMPAN DATA
+    // -------------------------
+    suspend fun saveSiswa() {
+        if (validasiInput()) {
+            repositorySiswa.insertSiswa(
+                siswa = uiStateSiswa.detailSiswa.toSiswa()
+            )
+        }
+    }
+}
