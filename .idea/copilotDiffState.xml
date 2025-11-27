@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/example/roomdatabase/view/route/DestinyHome.kt">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/example/roomdatabase/view/route/DestinyHome.kt" />
+              <option name="originalContent" value="package com.example.roomdatabase.view.route&#10;&#10;import com.example.roomdatabase.R&#10;&#10;/**&#10; * Objek tujuan navigasi untuk halaman Home.&#10; * Digunakan agar route dan judul tersentralisasi.&#10; */&#10;object DestinasiHome {&#10;    // Route yang dipakai di graph navigasi&#10;    const val route: String = &quot;home&quot;&#10;&#10;    // Resource judul yang dipakai di TopAppBar&#10;    val titleRes: Int = R.string.data_siswa&#10;}" />
+              <option name="updatedContent" value="package com.example.roomdatabase.view.route&#10;&#10;import com.example.roomdatabase.R&#10;&#10;/**&#10; * Objek tujuan navigasi untuk halaman Home.&#10; * Digunakan agar route dan judul tersentralisasi.&#10; */&#10;object DestinasiHome {&#10;    // Route yang dipakai di graph navigasi&#10;    const val route: String = &quot;home&quot;&#10;&#10;    // Resource judul yang dipakai di TopAppBar&#10;    val titleRes: Int = R.string.data_siswa&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
