@@ -5,19 +5,22 @@ import androidx.compose.runtime.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.res.stringResource
-import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import com.example.roomdatabase.view.route.DestinyEntry
 import com.example.roomdatabase.viewmodel.EntryViewModel
+import com.example.roomdatabase.viewmodel.UIStateSiswa
+import com.example.roomdatabase.viewmodel.DetailSiswa
+import com.example.roomdatabase.viewmodel.provider.PenyediaViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,14 +36,13 @@ fun EntrySiswaScreen(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             SiswaTopAppBar(
-                title = stringResource(id = DestinyEntry.titleRes),
+                title = stringResource(DestinyEntry.titleRes),
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
                 navigateUp = navigateBack
             )
         }
     ) { innerPadding ->
-
         EntrySiswaBody(
             uiStateSiswa = viewModel.uiStateSiswa,
             onSiswaValueChange = viewModel::updateUiState,
@@ -69,20 +71,27 @@ fun EntrySiswaBody(
         verticalArrangement = Arrangement.spacedBy(20.dp),
         modifier = modifier.padding(16.dp)
     ) {
-
         FormInputSiswa(
             detailSiswa = uiStateSiswa.detailSiswa,
             onValueChange = onSiswaValueChange,
             modifier = Modifier.fillMaxWidth()
         )
-
         Button(
             onClick = onSaveClick,
             enabled = uiStateSiswa.isEntryValid,
-            shape = MaterialTheme.shapes.small,
-            modifier = Modifier.fillMaxWidth()
+            shape = MaterialTheme.shapes.large,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFFFFD700), // Yellow
+                contentColor = Color.Black
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
         ) {
-            Text(text = stringResource("Submit"))
+            Text(
+                text = "Submit",
+                style = MaterialTheme.typography.titleMedium
+            )
         }
     }
 }
@@ -99,46 +108,40 @@ fun FormInputSiswa(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-
         OutlinedTextField(
             value = detailSiswa.nama,
             onValueChange = { onValueChange(detailSiswa.copy(nama = it)) },
-            label = { Text(text = stringResource("Nama Siswa")) },
+            label = { Text(text = "Nama Siswa") },
+
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
-            singleLine = true
+            singleLine = true,
+            shape = MaterialTheme.shapes.small
         )
-
         OutlinedTextField(
             value = detailSiswa.alamat,
             onValueChange = { onValueChange(detailSiswa.copy(alamat = it)) },
-            label = { Text(text = stringResource("Alamat Siswa")) },
+            label = { Text(text = "Alamat Siswa") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
-            singleLine = true
+            singleLine = true,
+            shape = MaterialTheme.shapes.small
         )
-
         OutlinedTextField(
             value = detailSiswa.telepon,
-            onValueChange = { onValueChange(detailSiswa.copy(telpon = it)) },
+            onValueChange = { onValueChange(detailSiswa.copy(telepon = it)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            label = { Text(text = stringResource("Telpon Siswa")) },
+            label = { Text(text = "Telpon Siswa") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
-            singleLine = true
+            singleLine = true,
+            shape = MaterialTheme.shapes.small
         )
-
         if (enabled) {
             Text(
                 text = "* required fields",
                 modifier = Modifier.padding(start = 16.dp)
             )
         }
-
-        HorizontalDivider(
-            modifier = Modifier.padding(bottom = 16.dp),
-            thickness = 8.dp,
-            color = Color.Blue
-        )
     }
 }

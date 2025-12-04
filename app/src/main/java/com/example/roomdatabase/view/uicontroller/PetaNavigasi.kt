@@ -3,12 +3,21 @@ package com.example.roomdatabase.view.uicontroller
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.roomdatabase.view.EntrySiswaScreen
+import com.example.roomdatabase.view.HomeScreen
+import com.example.roomdatabase.view.route.DestinasiHome
+import com.example.roomdatabase.view.route.DestinyEntry
 
 
 @Composable
 fun SiswaApp(
-    navController: NavHostController = rememberNavController(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController()
 ) {
     HostNavigasi(navController = navController, modifier = modifier)
 }
@@ -33,7 +42,7 @@ fun HostNavigasi(
         composable(route = DestinasiHome.route) {
             HomeScreen(
                 navigateToItemEntry = {
-                    navController.navigate(DestinasiEntry.route)
+                    navController.navigate(DestinyEntry.route)
                 }
             )
         }
@@ -41,7 +50,7 @@ fun HostNavigasi(
         // ================================
         // ENTRY SCREEN
         // ================================
-        composable(route = DestinasiEntry.route) {
+        composable(route = DestinyEntry.route) {
             EntrySiswaScreen(
                 navigateBack = { navController.popBackStack() }
             )

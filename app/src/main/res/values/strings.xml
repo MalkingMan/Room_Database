@@ -3,10 +3,11 @@
     <string name="data_siswa">Data Siswa</string>
     <string name="entry_siswa">Tambah Siswa</string>
     <string name="deskripsi_no_item">Tidak ada data Siswa. Tap + untuk menambah data</string>
+    <string name="tidak_ada_data_siswa">Tidak ada data siswa</string>
     <string name="tambah_siswa">Tambah Siswa</string>
     <string name="nama">Nama Siswa*</string>
     <string name="alamat">Alamat Siswa*</string>
-    <string name="telpon">Telpon Siswa*</string>
+    <string name="telepon">Telpon Siswa*</string>
     <string name="nama1">Nama Siswa  :</string>
     <string name="alamat1">Alamat Siswa :</string>
     <string name="telpon1">Telpon Siswa :</string>
