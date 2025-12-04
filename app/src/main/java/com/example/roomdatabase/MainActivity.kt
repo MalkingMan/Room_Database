@@ -47,3 +47,4 @@ fun GreetingPreview() {
         Greeting("Android")
     }
 }
+// mainactivity
